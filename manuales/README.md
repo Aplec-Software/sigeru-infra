@@ -10,4 +10,4 @@ El manual escrito está en el Anexo VI del documento del proyecto. Estos videos 
 | `videos/04_administrador.mp4` | Administrador | Panel de control, notificaciones, asignación de una incidencia, alta de un camión, optimización de una ruta e informe del período |
 | `videos/05_backoffice.mp4` | Backoffice | Monitoreo, usuarios, incidencias, exportación de un reporte a CSV, parámetros y auditoría |
 
-Los videos no tienen sonido: la explicación de cada paso aparece como subtítulo, en una franja debajo de la imagen. El mismo texto está en el archivo `.srt` que acompaña a cada video, que sirve de guion para grabar la narración.
+Cada video tiene la narración de los pasos y, además, la explicación como subtítulo, en una franja debajo de la imagen. El mismo texto está en el archivo `.srt` que acompaña a cada video.
