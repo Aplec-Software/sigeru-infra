@@ -4,7 +4,7 @@ El manual escrito está en el Anexo VI del documento del proyecto. Estos videos 
 
 | Video | Perfil | Qué muestra |
 |---|---|---|
-| `videos/01_vecino.mp4` | Vecino | Página pública y mapa, reporte con el código del QR sin registrarse, inicio de sesión, reporte con la cuenta, "Mis reportes" y salida |
+| `videos/01_vecino.mp4` | Vecino | Página pública y mapa, reporte con el código del QR sin registrarse, inicio de sesión, reporte con la cuenta, "Mis reportes", "Mi perfil" y salida |
 | `videos/02_cuadrilla.mp4` | Cuadrilla | "Mis tareas" y resolución de una incidencia, "Mi ruta" con el inicio del recorrido y el registro del vaciado, reporte de un contenedor quemado y mapa |
 | `videos/03_operario.mp4` | Operario de centro | "Mi centro" con la ocupación, registro de un ingreso de residuos y consulta de la maquinaria |
 | `videos/04_administrador.mp4` | Administrador | Panel de control, notificaciones, asignación de una incidencia, alta de un camión, optimización de una ruta e informe del período |

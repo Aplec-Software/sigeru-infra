@@ -32,7 +32,7 @@ Si encuentran un contenedor roto o quemado lo informan desde "Reportar problema"
 
 9
 00:01:21,435 --> 00:01:29,180
-El mapa muestra contenedores, centros e incidencias activas.
+El mapa muestra contenedores, centros e incidencias activas, con los colores de la leyenda.
 
 10
 00:01:29,330 --> 00:01:32,784
