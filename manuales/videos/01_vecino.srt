@@ -1,0 +1,39 @@
+1
+00:00:03,787 --> 00:00:08,826
+Esta es la página pública de SiGeRU. No hace falta registrarse para consultarla.
+
+2
+00:00:08,976 --> 00:00:12,890
+En "Cómo funciona" se explica el uso del código QR que tiene cada contenedor.
+
+3
+00:00:13,040 --> 00:00:22,197
+El mapa muestra los contenedores y los centros, con su estado actual.
+
+4
+00:00:22,347 --> 00:00:28,691
+Si el QR no se puede leer, se escribe el código que figura en la etiqueta.
+
+5
+00:00:28,841 --> 00:00:35,091
+Se abre el reporte de ese contenedor. Se elige qué pasa y se envía, sin datos personales.
+
+6
+00:00:35,241 --> 00:00:46,460
+Con una cuenta de vecino se pueden seguir los reportes. Se ingresa con el correo y la contraseña.
+
+7
+00:00:46,610 --> 00:00:58,951
+En "Reportar problema" se escribe el código del contenedor y se elige el tipo de problema.
+
+8
+00:00:59,101 --> 00:01:09,605
+En "Mis reportes" se ve el estado de cada reporte: abierto, en curso o resuelto.
+
+9
+00:01:09,755 --> 00:01:17,665
+El mapa interactivo también está disponible dentro de la cuenta.
+
+10
+00:01:17,815 --> 00:01:21,329
+Al terminar se cierra la sesión con "Salir".

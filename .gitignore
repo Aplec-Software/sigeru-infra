@@ -1,0 +1,10 @@
+# Entorno de desarrollo: se generan con desarrollo/iniciar.sh y no se suben
+desarrollo/claves/
+desarrollo/sigeru.sqlite
+desarrollo/*.log
+# Resultados de las pruebas
+pruebas/*.csv
+resultados_caja_negra_*.csv
+postman/resultados_caja_negra_*.csv
+__pycache__/
+*.log

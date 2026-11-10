@@ -1,0 +1,4 @@
+.env
+claves/*.pem
+gateway/certs/*
+!gateway/certs/.gitkeep

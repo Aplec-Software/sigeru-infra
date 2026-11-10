@@ -1,0 +1,31 @@
+1
+00:00:03,783 --> 00:00:13,426
+El backoffice es la herramienta interna de administración. Se entra con un usuario administrador.
+
+2
+00:00:13,576 --> 00:00:21,872
+La portada muestra el monitoreo del sistema y el mapa de incidencias.
+
+3
+00:00:22,022 --> 00:00:30,007
+En "Usuarios" se crean cuentas, se cambian roles y se aprueban o bloquean usuarios.
+
+4
+00:00:30,157 --> 00:00:37,721
+"Incidencias" permite filtrar, asignar y cambiar el estado de los reportes.
+
+5
+00:00:37,871 --> 00:00:50,471
+En "Reportes" se elige un informe y se exporta a CSV para trabajarlo en una planilla.
+
+6
+00:00:50,621 --> 00:00:57,841
+En "Parámetros" se ajustan valores como el umbral de desborde o el consumo de los camiones.
+
+7
+00:00:57,991 --> 00:01:05,391
+"Auditoría" registra quién hizo cada cambio y cuándo.
+
+8
+00:01:05,541 --> 00:01:10,730
+Al terminar se cierra la sesión.

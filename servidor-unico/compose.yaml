@@ -1,0 +1,186 @@
+# =====================================================================
+# SiGeRU - Instalación en un servidor único con cuatro contenedores
+# (instancia de instalación de la ESI, 9 al 11 de noviembre de 2026)
+#
+#   web       Apache + PHP 8.3. Landing (/), frontend (/app/) y backoffice
+#             (/backoffice/). Es el único contenedor con puertos publicados:
+#             HTTP 80 redirige a HTTPS 443, y los pedidos a /api/... los
+#             reenvía al contenedor api.
+#   api       Apache + PHP 8.3. API de Usuarios (puerto 8001), de Gestión
+#             (8002) y de Recolección (8003). Solo se llega desde la red de
+#             Docker.
+#   bd        MySQL 8.4. Al crearse ejecuta los scripts de sigeru-infra/db:
+#             estructura, datos base, datos de prueba y usuarios por servicio.
+#   respaldo  Genera respaldos .tar.gz de la base con su suma SHA-256, los
+#             verifica y aplica la retención.
+#
+# Se usa desde esta carpeta, con los siete repositorios clonados uno al
+# lado del otro (ver README.md):
+#   bash instalar.sh          crea el .env con contraseñas al azar y levanta todo
+#   docker compose ps      estado y salud de los cuatro contenedores
+#   bash verificar.sh         comprueba la instalación de punta a punta
+# =====================================================================
+name: sigeru
+
+x-logs: &logs
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+# Variables comunes a los contenedores con PHP
+x-entorno-php: &entorno-php
+  TZ: America/Montevideo
+  APP_IDIOMA: es
+  CONFIAR_PROXY: "1"
+  COOKIE_SEGURA: "1"
+  DB_HOST: bd
+  DB_PORT: "3306"
+  DB_NAME: sigeru
+  JWT_CLAVE_PUBLICA: /claves/jwt_publica.pem
+  # solo para trabajar con los datos de prueba como si fuera esa fecha; vacía = fecha real
+  FECHA_SIMULADA: ${FECHA_SIMULADA:-}
+
+services:
+  web:
+    build:
+      context: ./web
+      additional_contexts:
+        landing: ../../sigeru-landing
+        frontend: ../../sigeru-frontend
+        backoffice: ../../sigeru-backoffice
+    image: aplec/sigeru-web:${VERSION:-1.0.0}
+    container_name: sigeru-web
+    hostname: sigeru-web
+    restart: unless-stopped
+    environment:
+      <<: *entorno-php
+      APP_NOMBRE: backoffice
+      BASE_PATH: /backoffice
+      DB_USER: backoffice
+      DB_PASS: ${CLAVE_BACKOFFICE:?Falta CLAVE_BACKOFFICE en .env}
+      SERVIDOR_NOMBRE: ${SERVIDOR_NOMBRE:-sigeru.local}
+      SERVIDOR_IP: ${SERVIDOR_IP:-}
+      PUERTO_HTTPS: ${PUERTO_HTTPS:-443}
+    ports:
+      - "${PUERTO_HTTP:-80}:80"
+      - "${PUERTO_HTTPS:-443}:443"
+    volumes:
+      - certificados:/etc/sigeru/certificados
+      - logs:/var/log/sigeru
+    networks:
+      sigeru_red:
+        ipv4_address: ${IP_WEB:-172.30.50.10}
+    depends_on:
+      api:
+        condition: service_healthy
+    logging: *logs
+
+  api:
+    build:
+      context: ./api
+      additional_contexts:
+        usuarios: ../../sigeru-api-usuarios
+        gestion: ../../sigeru-api-gestion
+        recoleccion: ../../sigeru-api-recoleccion
+    image: aplec/sigeru-api:${VERSION:-1.0.0}
+    container_name: sigeru-api
+    hostname: sigeru-api
+    restart: unless-stopped
+    environment:
+      <<: *entorno-php
+      # cada API se conecta a MySQL con su propio usuario (ver api/apache/sigeru-api.conf)
+      CLAVE_API_USUARIOS: ${CLAVE_API_USUARIOS:?Falta CLAVE_API_USUARIOS en .env}
+      CLAVE_API_GESTION: ${CLAVE_API_GESTION:?Falta CLAVE_API_GESTION en .env}
+      CLAVE_API_RECOLECCION: ${CLAVE_API_RECOLECCION:?Falta CLAVE_API_RECOLECCION en .env}
+      APP_SAL: ${APP_SAL:?Falta APP_SAL en .env}
+    volumes:
+      - claves:/claves
+      - logs:/var/log/sigeru
+    networks:
+      sigeru_red:
+        ipv4_address: ${IP_API:-172.30.50.11}
+    depends_on:
+      bd:
+        condition: service_healthy
+    logging: *logs
+
+  bd:
+    image: mysql:8.4
+    container_name: sigeru-bd
+    hostname: sigeru-bd
+    restart: unless-stopped
+    environment:
+      TZ: America/Montevideo
+      MYSQL_ROOT_PASSWORD: ${CLAVE_ROOT_MYSQL:?Falta CLAVE_ROOT_MYSQL en .env}
+      # root solo puede entrar desde dentro del contenedor
+      MYSQL_ROOT_HOST: localhost
+      MYSQL_DATABASE: sigeru
+      # los usa bd/04_usuarios.sh para crear los usuarios de cada servicio
+      IP_WEB: ${IP_WEB:-172.30.50.10}
+      IP_API: ${IP_API:-172.30.50.11}
+      IP_RESPALDO: ${IP_RESPALDO:-172.30.50.30}
+      CLAVE_API_USUARIOS: ${CLAVE_API_USUARIOS}
+      CLAVE_API_GESTION: ${CLAVE_API_GESTION}
+      CLAVE_API_RECOLECCION: ${CLAVE_API_RECOLECCION}
+      CLAVE_BACKOFFICE: ${CLAVE_BACKOFFICE}
+      CLAVE_RESPALDO: ${CLAVE_RESPALDO:?Falta CLAVE_RESPALDO en .env}
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-time-zone=-03:00"]
+    volumes:
+      - datos_mysql:/var/lib/mysql
+      # se ejecutan en orden alfabético una sola vez, cuando el volumen está vacío
+      - ../db/01_estructura.sql:/docker-entrypoint-initdb.d/01_estructura.sql:ro,z
+      - ../db/02_datos_base.sql:/docker-entrypoint-initdb.d/02_datos_base.sql:ro,z
+      - ../db/03_datos_prueba.sql:/docker-entrypoint-initdb.d/03_datos_prueba.sql:ro,z
+      - ./bd/04_usuarios.sh:/docker-entrypoint-initdb.d/04_usuarios.sh:ro,z
+      - ../db/04_usuarios_bd.sql:/plantillas/04_usuarios_bd.sql:ro,z
+    networks:
+      sigeru_red:
+        ipv4_address: ${IP_BD:-172.30.50.20}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    logging: *logs
+
+  respaldo:
+    build: ./respaldo
+    image: aplec/sigeru-respaldo:${VERSION:-1.0.0}
+    container_name: sigeru-respaldo
+    hostname: sigeru-respaldo
+    restart: unless-stopped
+    environment:
+      TZ: America/Montevideo
+      DB_HOST: bd
+      DB_NAME: sigeru
+      DB_USER: respaldo
+      DB_PASS: ${CLAVE_RESPALDO}
+      RESPALDO_HORA: ${RESPALDO_HORA:-02:30}
+      RESPALDO_DIAS: ${RESPALDO_DIAS:-7}
+    volumes:
+      # carpeta del anfitrión: los respaldos quedan a la vista y no se borran con "down -v"
+      - ./respaldos:/respaldos:z
+    networks:
+      sigeru_red:
+        ipv4_address: ${IP_RESPALDO:-172.30.50.30}
+    depends_on:
+      bd:
+        condition: service_healthy
+    logging: *logs
+
+networks:
+  # red propia de SiGeRU: los contenedores se encuentran por su nombre (web, api, bd, respaldo)
+  sigeru_red:
+    name: sigeru_red
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${SUBRED:-172.30.50.0/24}
+
+volumes:
+  datos_mysql:     # datos de MySQL (persistencia)
+  claves:          # par de claves RSA para firmar y verificar los JWT
+  certificados:    # autoridad certificadora propia y certificado HTTPS
+  logs:            # logs de las aplicaciones

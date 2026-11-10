@@ -1,0 +1,3736 @@
+{
+  "info": {
+    "name": "SiGeRU - APIs",
+    "description": "Pruebas de caja negra de las APIs de SiGeRU (Aplec Software). Ejecutar la colección completa en orden (Runner) sobre una base con los datos de prueba. La última sesión iniciada (vecino2) queda en la cookie y la usa el caso CU-17. Con el entorno \"servidor\" desactivar la verificación SSL (certificado propio).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "0. Inicio de sesión",
+      "item": [
+        {
+          "name": "Login admin",
+          "protocolProfileBehavior": {
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"admin@sigeru.uy\", \"password\": \"{{clave_prueba}}\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"200 OK\", () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set(\"token_admin\", \"Bearer \" + pm.response.json().datos.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login cuadrilla",
+          "protocolProfileBehavior": {
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"jpereyra@sigeru.uy\", \"password\": \"{{clave_prueba}}\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"200 OK\", () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set(\"token_cuadrilla\", \"Bearer \" + pm.response.json().datos.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login cuadrilla3",
+          "protocolProfileBehavior": {
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"pmendez@sigeru.uy\", \"password\": \"{{clave_prueba}}\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"200 OK\", () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set(\"token_cuadrilla3\", \"Bearer \" + pm.response.json().datos.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login operario",
+          "protocolProfileBehavior": {
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"rbenitez@sigeru.uy\", \"password\": \"{{clave_prueba}}\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"200 OK\", () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set(\"token_operario\", \"Bearer \" + pm.response.json().datos.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login vecino",
+          "protocolProfileBehavior": {
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"ana.martinez@correo.uy\", \"password\": \"{{clave_prueba}}\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"200 OK\", () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set(\"token_vecino\", \"Bearer \" + pm.response.json().datos.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login vecino2",
+          "protocolProfileBehavior": {
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"luis.gomez@correo.uy\", \"password\": \"{{clave_prueba}}\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"200 OK\", () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set(\"token_vecino2\", \"Bearer \" + pm.response.json().datos.token);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1. API de Usuarios",
+      "item": [
+        {
+          "name": "CU-01 Estado del servicio",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/salud",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "salud"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-01: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-02 Login con contraseña incorrecta",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@sigeru.uy\",\n  \"password\": \"Incorrecta1!\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-02: responde 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-03 Login con correo mal escrito",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"no-es-correo\",\n  \"password\": \"x\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-03: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-04 Login de cuenta pendiente de aprobación",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"mcabrera@sigeru.uy\",\n  \"password\": \"Sigeru2026!\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-04: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-05 Datos de la sesión sin iniciar sesión",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/me",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-05: responde 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-06 Datos de la sesión del administrador",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/me",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-06: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-07 Registro de vecino",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/registro",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\":\"Rosa\",\"apellido\":\"Pérez\",\"email\":\"rosa{{$timestamp}}@correo.uy\",\"password\":\"ClaveSegura#1\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-07: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-08 Registro con correo ya usado",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/registro",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ana\",\n  \"apellido\": \"Otra\",\n  \"email\": \"ana.martinez@correo.uy\",\n  \"password\": \"ClaveSegura#1\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-08: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-09 Registro con contraseña débil",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/registro",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\":\"Rosa\",\"apellido\":\"Pérez\",\"email\":\"debil{{$timestamp}}@correo.uy\",\"password\":\"1234\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-09: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-10 Registro de personal con cédula inválida",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/registro",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\":\"Hugo\",\"apellido\":\"Vera\",\"email\":\"hv{{$timestamp}}@sigeru.uy\",\"password\":\"ClaveSegura#1\",\"rol\":\"operario\",\"documento\":\"12345678\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-10: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-11 Listado de usuarios como vecino",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_vecino}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/usuarios",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "usuarios"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-11: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-12 Listado de usuarios como administrador",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/usuarios?estado=pendiente",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "estado",
+                  "value": "pendiente"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-12: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-13 Parámetros públicos sin sesión",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/parametros/publicos",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "parametros",
+                "publicos"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-13: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-14 Cambiar un parámetro con valor inválido",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/parametros/umbral_ocupacion_centro",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "parametros",
+                "umbral_ocupacion_centro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"valor\": \"mucho\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-14: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-15 Notificaciones del administrador",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/notificaciones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "notificaciones"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-15: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-16 Método no permitido",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/me",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-16: responde 405\", () => pm.response.to.have.status(405));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-17 Modificar perfil sin la cabecera anti-CSRF",
+          "protocolProfileBehavior": {
+            "disableCookies": false
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/perfil",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "perfil"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idioma\": \"en\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-17: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. API de Gestión",
+      "item": [
+        {
+          "name": "CG-01 Mapa público",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/mapa",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "mapa"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-01: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-02 Contenedores públicos paginados",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores?por_pagina=5&zona_id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores"
+              ],
+              "query": [
+                {
+                  "key": "por_pagina",
+                  "value": "5"
+                },
+                {
+                  "key": "zona_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-02: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-03 Contenedor por código QR",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores/codigo/CNT-0005",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores",
+                "codigo",
+                "CNT-0005"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-03: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-04 Contenedor inexistente",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores/codigo/CNT-9999",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores",
+                "codigo",
+                "CNT-9999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-04: responde 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-05 Alta de contenedor sin sesión",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo_residuo_id\": 2,\n  \"zona_id\": 1,\n  \"direccion\": \"Av. Rivera 4321\",\n  \"latitud\": -34.8941,\n  \"longitud\": -56.1322,\n  \"capacidad_litros\": 2400\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-05: responde 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-06 Alta de contenedor como vecino",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_vecino}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo_residuo_id\": 2,\n  \"zona_id\": 1,\n  \"direccion\": \"Av. Rivera 4321\",\n  \"latitud\": -34.8941,\n  \"longitud\": -56.1322,\n  \"capacidad_litros\": 2400\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-06: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-07 Alta de contenedor como administrador",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo_residuo_id\": 2,\n  \"zona_id\": 1,\n  \"direccion\": \"Av. Rivera 4321\",\n  \"latitud\": -34.8941,\n  \"longitud\": -56.1322,\n  \"capacidad_litros\": 2400\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-07: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));",
+                  "pm.collectionVariables.set(\"nuevo_contenedor\", pm.response.json().datos.id);",
+                  "pm.collectionVariables.set(\"nuevo_codigo\", pm.response.json().datos.codigo);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-08 Alta con latitud fuera de rango",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo_residuo_id\": 2,\n  \"zona_id\": 1,\n  \"direccion\": \"Av. Rivera 4321\",\n  \"latitud\": 200,\n  \"longitud\": -56.1322,\n  \"capacidad_litros\": 2400\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-08: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-09 Alta con código repetido",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/contenedores",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "contenedores"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": \"CNT-0001\",\n  \"tipo_residuo_id\": 2,\n  \"zona_id\": 1,\n  \"direccion\": \"Av. Rivera 4321\",\n  \"latitud\": -34.89,\n  \"longitud\": -56.13,\n  \"capacidad_litros\": 2400\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-09: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-10 Reporte de incidencia de vecino",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_vecino}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"contenedor_id\":{{nuevo_contenedor}},\"tipo\":\"desborde\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-10: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));",
+                  "pm.collectionVariables.set(\"incidencia\", pm.response.json().datos.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-11 Mismo reporte de otro vecino (se agrupa)",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_vecino2}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"contenedor_id\":{{nuevo_contenedor}},\"tipo\":\"desborde\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-11: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-12 Reporte sobre contenedor dado de baja",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_vecino}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contenedor_id\": 48,\n  \"tipo\": \"desborde\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-12: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-13 Asignar la incidencia a la cuadrilla 1",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/{{incidencia}}/asignar",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "{{incidencia}}",
+                "asignar"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cuadrilla_id\": 1\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-13: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-14 Resolver sin describir la solución",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/{{incidencia}}/estado",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "{{incidencia}}",
+                "estado"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"resuelta\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-14: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-15 Resolver con comentario",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/{{incidencia}}/estado",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "{{incidencia}}",
+                "estado"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"resuelta\",\n  \"comentario\": \"Se vació el contenedor\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-15: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-16 Transición no permitida (resuelta a descartada)",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/{{incidencia}}/estado",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "{{incidencia}}",
+                "estado"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"descartada\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-16: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-17 Historial de la incidencia",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/{{incidencia}}/historial",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "{{incidencia}}",
+                "historial"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-17: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-18 Reporte anónimo por QR",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/qr",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "qr"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"contenedor_codigo\":\"{{nuevo_codigo}}\",\"tipo\":\"rotura\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-18: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-19 Segundo reporte QR desde la misma IP",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/qr",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "qr"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contenedor_codigo\": \"CNT-0010\",\n  \"tipo\": \"quema\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-19: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-20 Tercer reporte QR desde la misma IP",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/qr",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "qr"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contenedor_codigo\": \"CNT-0010\",\n  \"tipo\": \"falta_recoleccion\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-20: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-21 Cuarto reporte QR desde la misma IP",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/qr",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "qr"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contenedor_codigo\": \"CNT-0010\",\n  \"tipo\": \"otro\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-21: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-22 Quinto reporte QR desde la misma IP",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/qr",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "qr"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contenedor_codigo\": \"CNT-0010\",\n  \"tipo\": \"desborde\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-22: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-23 Sexto reporte QR en la misma hora (límite)",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/incidencias/qr",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "incidencias",
+                "qr"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contenedor_codigo\": \"CNT-0010\",\n  \"tipo\": \"rotura\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-23: responde 429\", () => pm.response.to.have.status(429));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-24 Movimiento en el centro propio del operario",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_operario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/centros/1/movimientos",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "centros",
+                "1",
+                "movimientos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo_movimiento\": \"ingreso\",\n  \"tipo_residuo_id\": 2,\n  \"peso_ton\": 1.5\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-24: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-25 Movimiento en un centro ajeno",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_operario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/centros/2/movimientos",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "centros",
+                "2",
+                "movimientos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo_movimiento\": \"ingreso\",\n  \"tipo_residuo_id\": 2,\n  \"peso_ton\": 1\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-25: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-26 Ingreso que supera la capacidad del centro",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_operario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/centros/1/movimientos",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "centros",
+                "1",
+                "movimientos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo_movimiento\": \"ingreso\",\n  \"tipo_residuo_id\": 2,\n  \"peso_ton\": 400\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-26: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-27 Salida de repuestos sin stock suficiente",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/repuestos/1/movimientos",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "repuestos",
+                "1",
+                "movimientos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"salida\",\n  \"cantidad\": 999,\n  \"motivo\": \"Prueba\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-27: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-28 Estadísticas como cuadrilla",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/estadisticas/resumen",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "estadisticas",
+                "resumen"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-28: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-29 Estadísticas como administrador",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/estadisticas/resumen",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "estadisticas",
+                "resumen"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-29: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-30 Informe de incidencias en CSV",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/informes/incidencias?formato=csv&desde=2026-10-01",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "informes",
+                "incidencias"
+              ],
+              "query": [
+                {
+                  "key": "formato",
+                  "value": "csv"
+                },
+                {
+                  "key": "desde",
+                  "value": "2026-10-01"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-30: responde 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CG-31 Borrar una zona con contenedores",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/gestion/zonas/1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gestion",
+                "zonas",
+                "1"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CG-31: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. API de Recolección",
+      "item": [
+        {
+          "name": "CR-01 Estado del servicio",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/salud",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "salud"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-01: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-02 Listado de camiones sin sesión",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/camiones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "camiones"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-02: responde 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-03 Listado de camiones como cuadrilla",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/camiones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "camiones"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-03: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-04 Alta de camión con matrícula mal escrita",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/camiones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "camiones"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"matricula\": \"sim3201\",\n  \"marca\": \"Volvo\",\n  \"modelo\": \"VM 270\",\n  \"anio\": 2024,\n  \"tipo\": \"compactador\",\n  \"capacidad_ton\": 11\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-04: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-05 Alta de camión",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/camiones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "camiones"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"matricula\":\"SIM {{numero_camion}}\",\"marca\":\"Volvo\",\"modelo\":\"VM 270\",\"anio\":2024,\"tipo\":\"compactador\",\"capacidad_ton\":11}"
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"numero_camion\", 3300 + Math.floor(Math.random() * 600));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-05: responde 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-06 Asignación con fecha pasada",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/asignaciones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "asignaciones"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruta_id\": 4,\n  \"cuadrilla_id\": 1,\n  \"camion_id\": 6,\n  \"fecha\": \"2026-10-01\",\n  \"turno\": \"nocturno\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-06: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-07 Asignación con camión en mantenimiento",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/asignaciones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "asignaciones"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruta_id\": 4,\n  \"cuadrilla_id\": 1,\n  \"camion_id\": 8,\n  \"fecha\": \"2026-11-03\",\n  \"turno\": \"nocturno\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-07: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-08 Asignación con la cuadrilla ya ocupada en el turno",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/asignaciones",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "asignaciones"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruta_id\": 4,\n  \"cuadrilla_id\": 2,\n  \"camion_id\": 1,\n  \"fecha\": \"2026-11-02\",\n  \"turno\": \"matutino\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-08: responde 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-09 Recorridos de hoy de la cuadrilla",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla3}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/asignaciones/hoy",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "asignaciones",
+                "hoy"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-09: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-10 Mi cuadrilla",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/cuadrillas/mia",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "cuadrillas",
+                "mia"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-10: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-11 Ruta con contenedores repetidos",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/rutas/4/contenedores",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "rutas",
+                "4",
+                "contenedores"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contenedores\": [\n    37,\n    37\n  ]\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-11: responde 422\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-12 Volumen recolectado como cuadrilla",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/estadisticas/volumen",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "estadisticas",
+                "volumen"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-12: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-13 Volumen recolectado por zona",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/estadisticas/volumen?desde=2026-10-01&hasta=2026-10-29&agrupar=zona",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "estadisticas",
+                "volumen"
+              ],
+              "query": [
+                {
+                  "key": "desde",
+                  "value": "2026-10-01"
+                },
+                {
+                  "key": "hasta",
+                  "value": "2026-10-29"
+                },
+                {
+                  "key": "agrupar",
+                  "value": "zona"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-13: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-14 Ruta inexistente",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/rutas/999",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "rutas",
+                "999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-14: responde 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-15 Recurso inexistente en la API",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/no-existe",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "no-existe"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-15: responde 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-16 Propuesta de orden de una ruta",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/rutas/1/optimizacion",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "rutas",
+                "1",
+                "optimizacion"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-16: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CR-17 Propuesta de orden de una ruta como cuadrilla",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_cuadrilla}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/recoleccion/rutas/1/optimizacion",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "recoleccion",
+                "rutas",
+                "1",
+                "optimizacion"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CR-17: responde 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Cierre de sesión",
+      "item": [
+        {
+          "name": "CU-18 Cerrar sesión",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_vecino2}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/logout",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-18: responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Formato de respuesta de SiGeRU\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CU-19 Usar la sesión ya cerrada",
+          "protocolProfileBehavior": {
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Requested-With",
+                "value": "SiGeRU"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{token_vecino2}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/usuarios/auth/me",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CU-19: responde 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "clave_prueba",
+      "value": "Sigeru2026!"
+    },
+    {
+      "key": "token_admin",
+      "value": ""
+    },
+    {
+      "key": "token_cuadrilla",
+      "value": ""
+    },
+    {
+      "key": "token_cuadrilla3",
+      "value": ""
+    },
+    {
+      "key": "token_operario",
+      "value": ""
+    },
+    {
+      "key": "token_vecino",
+      "value": ""
+    },
+    {
+      "key": "token_vecino2",
+      "value": ""
+    },
+    {
+      "key": "nuevo_contenedor",
+      "value": ""
+    },
+    {
+      "key": "nuevo_codigo",
+      "value": ""
+    },
+    {
+      "key": "incidencia",
+      "value": ""
+    },
+    {
+      "key": "numero_camion",
+      "value": ""
+    }
+  ]
+}

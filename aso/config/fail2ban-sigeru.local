@@ -1,0 +1,13 @@
+# SiGeRU - bloqueo automático de IP con intentos fallidos de acceso
+# (/etc/fail2ban/jail.d/sigeru.local)
+[DEFAULT]
+bantime = 1h
+findtime = 10m
+maxretry = 5
+banaction = firewallcmd-rich-rules
+ignoreip = 127.0.0.1/8 ::1 {{IP_APP}} {{IP_BD}} {{IP_RESPALDO}}
+
+[sshd]
+enabled = true
+port = {{PUERTO_SSH}}
+backend = systemd

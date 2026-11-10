@@ -1,0 +1,23 @@
+1
+00:00:03,500 --> 00:00:13,355
+El operario de un centro de acopio entra con su usuario.
+
+2
+00:00:13,505 --> 00:00:17,351
+"Mi centro" muestra la ocupación del centro y los residuos que acepta.
+
+3
+00:00:17,501 --> 00:00:28,279
+Para registrar un ingreso se elige el tipo de movimiento, el residuo, el peso y el camión que lo trajo.
+
+4
+00:00:28,429 --> 00:00:33,599
+La ocupación se actualiza y el movimiento aparece en la lista de últimos movimientos.
+
+5
+00:00:33,749 --> 00:00:41,041
+En "Maquinaria" se ve el equipo del centro y su estado.
+
+6
+00:00:41,191 --> 00:00:44,228
+Al terminar se cierra la sesión.

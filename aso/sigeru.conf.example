@@ -1,0 +1,37 @@
+# Configuración del script de administración de SiGeRU (/etc/sigeru/sigeru.conf)
+# Cada servidor tiene su copia; solo cambia ROL.
+
+# Rol de este servidor: app | bd | respaldo
+ROL=app
+
+# Red interna de los servidores (adaptador "solo anfitrión" de VirtualBox)
+INTERFAZ_INTERNA=enp0s8
+RED_INTERNA=192.168.56.0/24
+IP_APP=192.168.56.10
+IP_BD=192.168.56.20
+IP_RESPALDO=192.168.56.30
+
+# Nombres de los servidores
+NOMBRE_APP=sigeru-app
+NOMBRE_BD=sigeru-bd
+NOMBRE_RESPALDO=sigeru-respaldo
+
+# Usuario administrador (entra por SSH y usa sudo)
+USUARIO_ADMIN=aplecadmin
+PUERTO_SSH=22
+
+# Carpetas
+DIR_SIGERU=/opt/aplec/sigeru
+DIR_RESPALDOS_LOCAL=/var/backups/sigeru
+DIR_RESPALDOS_REMOTO=/srv/respaldos/sigeru
+USUARIO_RESPALDO=respaldo
+
+# Retención de respaldos (días)
+DIAS_RESPALDO_LOCAL=7
+DIAS_RESPALDO_REMOTO=30
+DIAS_LOGS_APLICACIONES=60
+# versión mínima de PHP en los contenedores (se actualiza cuando se publica un aviso de seguridad)
+PHP_MINIMO=8.3.36
+
+# Repositorios (organización de GitHub)
+GITHUB_ORG=https://github.com/Aplec-Software

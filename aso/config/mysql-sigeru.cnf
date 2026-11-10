@@ -1,0 +1,15 @@
+# SiGeRU - configuración de MySQL 8 (/etc/my.cnf.d/sigeru.cnf)
+[mysqld]
+# solo escucha en la red interna (el firewall además limita a sigeru-app)
+bind-address = {{IP_BD}}
+mysqlx = 0
+skip-name-resolve = ON
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+default-time-zone = '-03:00'
+max_connections = 150
+local_infile = OFF
+# registro de consultas lentas (más de 1 segundo) para detectar problemas
+slow_query_log = ON
+slow_query_log_file = /var/log/mysql/mysql-slow.log
+long_query_time = 1

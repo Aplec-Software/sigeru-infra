@@ -1,0 +1,39 @@
+1
+00:00:03,500 --> 00:00:12,687
+El administrador municipal entra con su usuario y llega al panel de control.
+
+2
+00:00:12,837 --> 00:00:24,829
+El panel resume incidencias, contenedores desbordados, camiones disponibles y toneladas recolectadas.
+
+3
+00:00:24,979 --> 00:00:31,947
+La campana muestra los avisos: reportes nuevos, desbordes repetidos o mantenimientos próximos.
+
+4
+00:00:32,097 --> 00:00:47,747
+En "Incidencias" se filtran las abiertas, se abre una y se asigna a una cuadrilla.
+
+5
+00:00:47,897 --> 00:01:09,347
+Los recursos se gestionan con alta, modificación y baja. Por ejemplo, el alta de un camión nuevo.
+
+6
+00:01:09,497 --> 00:01:14,755
+El camión queda en la lista, disponible para asignar a un recorrido.
+
+7
+00:01:14,905 --> 00:01:28,048
+En "Rutas", el botón "Optimizar" propone un orden más corto que da prioridad a los contenedores urgentes.
+
+8
+00:01:28,198 --> 00:01:32,805
+Se comparan los kilómetros y el tiempo del orden actual y del propuesto. Si conviene, se aplica.
+
+9
+00:01:32,955 --> 00:01:43,676
+En "Informes" se elige el período, se genera el informe y se puede exportar a CSV o imprimir.
+
+10
+00:01:43,826 --> 00:01:46,669
+Al terminar se cierra la sesión.

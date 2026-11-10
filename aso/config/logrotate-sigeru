@@ -1,0 +1,10 @@
+# SiGeRU - rotación de los logs del script y de los respaldos (/etc/logrotate.d/sigeru)
+/var/log/sigeru/*.log {
+    monthly
+    rotate 12
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 root sigeru-logs
+}

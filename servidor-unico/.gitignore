@@ -1,0 +1,4 @@
+# Configuración con contraseñas y archivos generados en el servidor: no se suben
+.env
+respaldos/
+verificacion_*.txt

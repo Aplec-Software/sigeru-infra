@@ -1,0 +1,39 @@
+1
+00:00:03,500 --> 00:00:13,483
+La cuadrilla entra con su usuario. Lo ideal es usarlo desde el celular o la tablet del camión.
+
+2
+00:00:13,633 --> 00:00:17,079
+"Mis tareas" muestra las incidencias asignadas a la cuadrilla, con su prioridad.
+
+3
+00:00:17,229 --> 00:00:32,455
+Con "Ver y resolver" se abre el detalle. Al terminar el trabajo se escribe qué se hizo y se marca como resuelta.
+
+4
+00:00:32,605 --> 00:00:41,997
+En "Mi ruta" está el recorrido del día con las paradas en orden y la urgencia de cada contenedor.
+
+5
+00:00:42,147 --> 00:00:46,356
+Al salir se toca "Iniciar recorrido".
+
+6
+00:00:46,506 --> 00:00:58,921
+En cada parada se registra el vaciado: nivel en que estaba el contenedor y peso estimado.
+
+7
+00:00:59,071 --> 00:01:04,296
+La parada queda como vaciada y el orden de las siguientes se recalcula según la urgencia.
+
+8
+00:01:04,446 --> 00:01:21,285
+Si encuentran un contenedor roto o quemado lo informan desde "Reportar problema".
+
+9
+00:01:21,435 --> 00:01:29,180
+El mapa muestra contenedores, centros e incidencias activas.
+
+10
+00:01:29,330 --> 00:01:32,784
+Al terminar el turno se cierra la sesión.
